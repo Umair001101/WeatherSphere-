@@ -30,7 +30,7 @@ WeatherSphere is a React application that provides real-time weather information
    ```
    REACT_APP_API_KEY=your_api_key_here
    ```
-   ### Note: Replace `your_api_key_here` with your actual OpenWeatherMap API key.
+   ## Note: Replace `your_api_key_here` with your actual OpenWeatherMap API key.
 
 4. Start the development server:
    ```bash

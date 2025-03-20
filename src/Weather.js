@@ -38,7 +38,7 @@ function Weather() {
   }, []);
 
   const updateHistory = (city) => {
-    const updated = [...new Set([city, ...searchHistory])].slice(0, 5);
+    const updated = [...new Set([city, ...searchHistory])];
     setSearchHistory(updated);
     localStorage.setItem('weatherSearchHistory', JSON.stringify(updated));
   };
@@ -114,15 +114,15 @@ function Weather() {
 
       
         {searchHistory.length > 0 && (
-  <div className="history">
-    {searchHistory.map((city, i) => (
-      <button key={i} onClick={() => fetchWeather(city)}>
-        {city}
-      </button>
-    ))}
-    <button onClick={clearHistory} className="clear-history">❌ Clear</button>
-  </div>
-)}
+        <div className="history">
+          {searchHistory.map((city, i) => (
+            <button key={i} onClick={() => fetchWeather(city)}>
+              {city}
+            </button>
+          ))}
+          <button onClick={clearHistory} className="clear-history">❌ Clear</button>
+        </div>
+      )}
 
       </div>
 
@@ -135,7 +135,7 @@ function Weather() {
               icon={iconMappings[weatherData.weather[0].icon] || 'CLEAR_DAY'}
               color="#2c3e50"
               size={80}
-              animate
+              animate={true} 
             />
             <h2>
               {weatherData.name}, {weatherData.sys.country}
@@ -146,28 +146,72 @@ function Weather() {
               <span>Feels like {Math.round(convertTemp(weatherData.main.feels_like))}°</span>
             </div>
           </div>
-
           <div className="details-grid">
             <div className="detail-card">
               <span>💧 Humidity</span>
               {weatherData.main.humidity}%
             </div>
             <div className="detail-card">
+              <span>Date</span>
+              {new Date(weatherData.dt * 1000).toLocaleDateString()}
+            </div>
+            <div className="detail-card">
               <span>🌬️ Wind</span>
               {weatherData.wind.speed} m/s
+            </div>
+            <div className="detail-card">
+              <span>Sky</span>
+              {weatherData.weather[0].description}
             </div>
             <div className="detail-card">
               <span>📡 Pressure</span>
               {weatherData.main.pressure} hPa
             </div>
             <div className="detail-card">
-              <span>👀 Visibility</span>
-              {(weatherData.visibility / 1000).toFixed(1)} km
+              <span>🌅 Sunrise</span
+              >{new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString()}
             </div>
+            <div className="detail-card">
+              <span>🌇 Sunset</span
+              >{new Date(weatherData.sys.sunset * 1000).toLocaleTimeString()}
+            </div>
+            <div className="detail-card">
+              <span>🌡️ Max Temp</span
+              >{weatherData.main.temp_max}°{unit}
+              </div>
+              <div className="detail-card">
+              <span>🌡️ Min Temp</span>
+              {weatherData.main.temp_min}°{unit}
+            </div>
+            <div className="detail-card">
+            <span>Wind speed</span>
+            {weatherData.wind.speed} m/s
+            </div>
+            <div className="detail-card">
+              <span>Wind direction</span>
+              {weatherData.wind.deg}°
+            </div>
+            <div className="detail-card">
+              <span>Sea_Level</span>
+              {weatherData.main.sea_level} hPa
+            </div>
+                  <div className="detail-card">
+              <span>Ground_Level</span>
+              {weatherData.main.grnd_level} hPa
+            </div>
+            <div className="detail-card">
+              <span>👀 Visibility</span>
+              {(weatherData.visibility / 1000)} km
+            </div>
+            <div className="detail-card">
+              <span>Clouds</span>
+              {weatherData.clouds.all}%
+              </div>
+          
           </div>
         </div>
       )}
-
+      
       <style jsx>{`
         .weather-container {
           min-height: 100vh;
@@ -369,7 +413,7 @@ function Weather() {
 
 function getBackgroundStyle(weatherCondition) {
   const conditions = {
-    Clear: 'linear-gradient(160deg, #ffd700, #87ceeb)',
+    Clear: 'linear-gradient(160deg, #ffd700,rgb(8, 177, 244))',
     Clouds: 'linear-gradient(160deg, #bdc3c7, #7f8c8d)',
     Rain: 'linear-gradient(160deg, #6b6b6b, #2c3e50)',
     Snow: 'linear-gradient(160deg, #ffffff, #a3b1b6)',

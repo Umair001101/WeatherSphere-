@@ -148,7 +148,7 @@ function Weather() {
           </div>
           <div className="details-grid">
             <div className="detail-card">
-              <span>💧 Humidity</span>
+              <span> Humidity</span>
               {weatherData.main.humidity}%
             </div>
             <div className="detail-card">
@@ -156,7 +156,7 @@ function Weather() {
               {new Date(weatherData.dt * 1000).toLocaleDateString()}
             </div>
             <div className="detail-card">
-              <span>🌬️ Wind</span>
+              <span> Wind</span>
               {weatherData.wind.speed} m/s
             </div>
             <div className="detail-card">
@@ -164,23 +164,23 @@ function Weather() {
               {weatherData.weather[0].description}
             </div>
             <div className="detail-card">
-              <span>📡 Pressure</span>
+              <span> Pressure</span>
               {weatherData.main.pressure} hPa
             </div>
             <div className="detail-card">
-              <span>🌅 Sunrise</span
+              <span>Sunrise</span
               >{new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString()}
             </div>
             <div className="detail-card">
-              <span>🌇 Sunset</span
-              >{new Date(weatherData.sys.sunset * 1000).toLocaleTimeString()}
+              <span> Sunset</span>
+              {new Date(weatherData.sys.sunset * 1000).toLocaleTimeString()}
             </div>
             <div className="detail-card">
-              <span>🌡️ Max Temp</span
+              <span> Max Temp</span
               >{weatherData.main.temp_max}°{unit}
               </div>
               <div className="detail-card">
-              <span>🌡️ Min Temp</span>
+              <span> Min Temp</span>
               {weatherData.main.temp_min}°{unit}
             </div>
             <div className="detail-card">
@@ -200,7 +200,7 @@ function Weather() {
               {weatherData.main.grnd_level} hPa
             </div>
             <div className="detail-card">
-              <span>👀 Visibility</span>
+              <span> Visibility</span>
               {(weatherData.visibility / 1000)} km
             </div>
             <div className="detail-card">
